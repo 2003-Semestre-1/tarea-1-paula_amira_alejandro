@@ -35,12 +35,6 @@ public class FileManager {
     public FileManager() {
         
     }
-
-    public FileManager(String filePath) {
-        this.loadOperations();
-        this.loadDataRegisters();
-        this.loadFileInstructions(filePath);
-    }
     
     public String selectFile(Component viewComponent){
         String filePath = "";
