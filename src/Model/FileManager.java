@@ -6,7 +6,9 @@
 package Model;
 
 import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
+import java.awt.Component;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -14,7 +16,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -23,17 +27,39 @@ import javax.swing.JOptionPane;
 public class FileManager {
     
     BufferedReader fileReader;
-    String filePath;
     ArrayList<MemoryRegister> instructions;
     HashMap<String,Integer> operations;
     HashMap<String,Integer> dataRegisters;
-    int errors = 0;
+    int errorAmount = 0;
+    
+    public FileManager() {
+        
+    }
 
     public FileManager(String filePath) {
-        this.filePath = filePath;
-        this.loadFileInstructions(filePath);
         this.loadOperations();
         this.loadDataRegisters();
+        this.loadFileInstructions(filePath);
+    }
+    
+    public String selectFile(Component viewComponent){
+        String filePath = "";
+        
+        JFileChooser fileChooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos .asm", "asm");
+        fileChooser.setFileFilter(filter);
+        
+        fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+        int result = fileChooser.showOpenDialog(viewComponent);
+        
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            filePath = selectedFile.getAbsolutePath();
+            
+            System.out.println("El archivo seleccionado es: " + filePath);
+        }
+        
+        return filePath;
     }
     
     public void loadFileInstructions(String filePath){
@@ -43,15 +69,16 @@ public class FileManager {
             String instruction = fileReader.readLine();
             int instructionPos = 0;
             
-            while(instruction != null) {   
+            while(instruction != null) {
                 
-                if(!this.validateInstruction(instruction,instructionPos)){                                                     
+                if(!this.validateInstruction(instruction,instructionPos)){                                          
                     
                     addError();
                     return;
                 } 
                 
-                this.instructions.add(processInstruction(instruction));
+                // aqui va el codigo para procesar la instruccion
+                System.out.println(instruction);
                 
                 instructionPos++;
                 instruction = fileReader.readLine();
@@ -88,6 +115,7 @@ public class FileManager {
         this.dataRegisters.put("bx", 2);
         this.dataRegisters.put("cx", 3);
         this.dataRegisters.put("dx", 4);
+        System.out.println(dataRegisters);
     }
     
     public void loadOperations() {
@@ -97,10 +125,11 @@ public class FileManager {
         this.operations.put("MOV", 3);
         this.operations.put("SUB", 4);
         this.operations.put("ADD", 5);
+        System.out.println(operations);
     }
     
     public void addError() {
-        this.errors = this.errors + 1;
+        this.setErrorAmount(errorAmount+1);
     }
 
     public BufferedReader getFileReader() {
@@ -110,15 +139,7 @@ public class FileManager {
     public void setFileReader(BufferedReader fileReader) {
         this.fileReader = fileReader;
     }
-
-    public String getFilePath() {
-        return filePath;
-    }
-
-    public void setFilePath(String filePath) {
-        this.filePath = filePath;
-    }
-
+    
     public HashMap<String, Integer> getOperations() {
         return operations;
     }
@@ -135,12 +156,12 @@ public class FileManager {
         this.dataRegisters = dataRegisters;
     }
 
-    public int getErrors() {
-        return errors;
+    public int getErrorAmount() {
+        return errorAmount;
     }
 
-    public void setErrors(int errors) {
-        this.errors = errors;
+    public void setErrorAmount(int errorAmount) {
+        this.errorAmount = errorAmount;
     }
     
     public ArrayList<MemoryRegister> getInstructions() {
