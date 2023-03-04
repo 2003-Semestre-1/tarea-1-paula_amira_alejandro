@@ -26,7 +26,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class FileManager {
     
     BufferedReader fileReader;
-    ArrayList<DataRegister> instructions = new ArrayList<DataRegister>();
+    ArrayList<MemoryRegister> instructions = new ArrayList<MemoryRegister>();
     HashMap<String,Integer> operations;
     HashMap<String,Integer> dataRegisters;
     int lineAmount = 0;
@@ -85,6 +85,9 @@ public class FileManager {
                 System.out.println("Instruccion #"+i+": "+currentInstruction);
             }
             
+            Memory memory = new Memory(instructions);
+            CPU miniPC = new CPU(memory);
+            
             if(instructionPos == 0){
                 JOptionPane.showMessageDialog (null, "El archivo no puede estar vacío.", "Error: archivo vacío", JOptionPane.ERROR_MESSAGE);       
                 return;
@@ -98,8 +101,8 @@ public class FileManager {
         }
     }
     
-    public DataRegister processInstruction(String instruction){
-        DataRegister dataRegisterInstruction = null;
+    public MemoryRegister processInstruction(String instruction){
+        MemoryRegister memoryRegisterInstruction = null;
         
         String[] split1 = instruction.split(",");
         String[] split2 = split1[0].split(" ");
@@ -115,13 +118,13 @@ public class FileManager {
         int opValue = this.operations.get(operator);
         int registerValue = this.dataRegisters.get(register);
         
-        dataRegisterInstruction = new DataRegister(opValue, registerValue, value, "Data");
-        System.out.println("Operador: "+dataRegisterInstruction.getOp());
-        System.out.println("Registro: "+dataRegisterInstruction.getAddress());
-        System.out.println("Valor: "+dataRegisterInstruction.getValue());
-        System.out.println("Tipo de registro: "+dataRegisterInstruction.getRegisterType());
+        memoryRegisterInstruction = new MemoryRegister(opValue, registerValue, value, "Data");
+        System.out.println("Operador: "+memoryRegisterInstruction.getOp());
+        System.out.println("Registro: "+memoryRegisterInstruction.getAddress());
+        System.out.println("Valor: "+memoryRegisterInstruction.getValue());
+        System.out.println("Tipo de registro: "+memoryRegisterInstruction.getRegisterType());
         
-        return dataRegisterInstruction;
+        return memoryRegisterInstruction;
     }
     
     public boolean validateInstruction(String instruction,int instructionPos) {
@@ -182,11 +185,11 @@ public class FileManager {
         this.errorAmount = errorAmount;
     }
     
-    public ArrayList<DataRegister> getInstructions() {
+    public ArrayList<MemoryRegister> getInstructions() {
         return instructions;
     }
 
-    public void setInstructions(ArrayList<DataRegister> instructions) {
+    public void setInstructions(ArrayList<MemoryRegister> instructions) {
         this.instructions = instructions;
     }
     

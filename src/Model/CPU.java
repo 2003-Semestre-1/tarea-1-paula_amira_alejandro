@@ -14,11 +14,19 @@ import java.util.ArrayList;
 public class CPU {
     
     Memory memory;
-    ArrayList<DataRegister> dataRegisters;
+    ArrayList<DataRegister> dataRegisters = new ArrayList<DataRegister>();
 
-    public CPU(Memory memory, ArrayList<DataRegister> dataRegisters) {
+    public CPU(Memory memory) {
         this.memory = memory;
-        this.dataRegisters = dataRegisters;
+        DataRegister ax = new DataRegister(0,"Data");
+        DataRegister bx = new DataRegister(0,"Data");
+        DataRegister cx = new DataRegister(0,"Data");
+        DataRegister dx = new DataRegister(0,"Data");
+        this.dataRegisters.add(ax);
+        this.dataRegisters.add(bx);
+        this.dataRegisters.add(cx);
+        this.dataRegisters.add(dx);
+        
     }
     
     public Memory getMemory() {
