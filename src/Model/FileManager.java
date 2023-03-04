@@ -29,6 +29,7 @@ public class FileManager {
     ArrayList<DataRegister> instructions = new ArrayList<DataRegister>();
     HashMap<String,Integer> operations;
     HashMap<String,Integer> dataRegisters;
+    int lineAmount = 0;
     int errorAmount = 0;
     
     public FileManager() {
@@ -74,6 +75,7 @@ public class FileManager {
                 System.out.println("Instruccion es: " + instruction);
                 
                 instructionPos++;
+                lineAmount++;
                 instruction = fileReader.readLine();
                 
             }
