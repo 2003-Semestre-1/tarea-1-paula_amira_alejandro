@@ -9,24 +9,50 @@ package Model;
  *
  * @author aleja
  */
-public class Register {
-    private String nombre;
-    private int valor;
+public abstract class Register {
+    
+    public Integer op;
+    public Integer address;
+    public Integer value;
+    public String registerType;
 
-    public Register(String nombre) {
-        this.nombre = nombre;
-        this.valor = 0;
+    public Register(Integer op, Integer address, Integer value, String registerType) {
+        this.op = op;
+        this.address = address;
+        this.value = value;
+        this.registerType = registerType;
     }
 
-    public String getNombre() {
-        return nombre;
+    public Integer getOp() {
+        return op;
     }
 
-    public int getValor() {
-        return valor;
+    public void setOp(Integer op) {
+        this.op = op;
     }
 
-    public void setValor(int valor) {
-        this.valor = valor;
+    public Integer getAddress() {
+        return address;
     }
+
+    public void setAddress(Integer address) {
+        this.address = address;
+    }
+
+    public Integer getValue() {
+        return value;
+    }
+
+    public void setValue(Integer value) {
+        this.value = value;
+    }
+
+    public String getRegisterType() {
+        return registerType;
+    }
+
+    public void setRegisterType(String registerType) {
+        this.registerType = registerType;
+    }
+    
 }

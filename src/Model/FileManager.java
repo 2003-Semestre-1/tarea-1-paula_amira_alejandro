@@ -70,8 +70,8 @@ public class FileManager {
                     return;
                 } 
                 
-                // aqui va el codigo para procesar la instruccion
-                System.out.println(instruction);
+                this.processInstruction(instruction);
+                System.out.println("Instruccion es: " + instruction);
                 
                 instructionPos++;
                 instruction = fileReader.readLine();
@@ -91,10 +91,30 @@ public class FileManager {
         }
     }
     
-    public MemoryRegister processInstruction(String instruction){
-        MemoryRegister instructionRegister = null;
+    public DataRegister processInstruction(String instruction){
+        DataRegister dataRegisterInstruction = null;
         
-        return instructionRegister;
+        String[] split1 = instruction.split(",");
+        String[] split2 = split1[0].split(" ");
+        
+        String operator = split2[0].toLowerCase();
+        String register = split2[1].toLowerCase();
+        int value = 0;  
+        
+        if(split1.length == 2){
+            value = Integer.parseInt(split1[1].trim().toLowerCase());
+        }
+        
+        int opValue = this.operations.get(operator);
+        int registerValue = this.dataRegisters.get(register);
+        
+        dataRegisterInstruction = new DataRegister(opValue, registerValue, value, "Data");
+        System.out.println("Operador: "+dataRegisterInstruction.getOp());
+        System.out.println("Registro: "+dataRegisterInstruction.getAddress());
+        System.out.println("Valor: "+dataRegisterInstruction.getValue());
+        System.out.println("Tipo de registro: "+dataRegisterInstruction.getRegisterType());
+        
+        return dataRegisterInstruction;
     }
     
     public boolean validateInstruction(String instruction,int instructionPos) {
@@ -108,17 +128,15 @@ public class FileManager {
         this.dataRegisters.put("bx", 2);
         this.dataRegisters.put("cx", 3);
         this.dataRegisters.put("dx", 4);
-        System.out.println(dataRegisters);
     }
     
     public void loadOperations() {
         this.operations = new HashMap<>();
-        this.operations.put("LOAD", 1);
-        this.operations.put("STORE", 2);
-        this.operations.put("MOV", 3);
-        this.operations.put("SUB", 4);
-        this.operations.put("ADD", 5);
-        System.out.println(operations);
+        this.operations.put("load", 1);
+        this.operations.put("store", 2);
+        this.operations.put("mov", 3);
+        this.operations.put("sub", 4);
+        this.operations.put("add", 5);
     }
     
     public void addError() {
