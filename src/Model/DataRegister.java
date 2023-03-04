@@ -10,23 +10,49 @@ package Model;
  * @author aleja
  */
 public class DataRegister {
-    private String nombre;
-    private int valor;
+    private Register ax;
+    private Register bx;
+    private Register cx;
+    private Register dx;
 
-    public DataRegister(String nombre) {
-        this.nombre = nombre;
-        this.valor = 0;
+    public DataRegister(Register ax, Register bx, Register cx, Register dx) {
+        this.ax = ax;
+        this.bx = bx;
+        this.cx = cx;
+        this.dx = dx;
     }
 
-    public String getNombre() {
-        return nombre;
+    public Register getAx() {
+        return ax;
     }
 
-    public int getValor() {
-        return valor;
+    public void setAx(Register ax) {
+        this.ax = ax;
     }
 
-    public void setValor(int valor) {
-        this.valor = valor;
+    public Register getBx() {
+        return bx;
     }
+
+    public void setBx(Register bx) {
+        this.bx = bx;
+    }
+
+    public Register getCx() {
+        return cx;
+    }
+
+    public void setCx(Register cx) {
+        this.cx = cx;
+    }
+
+    public Register getDx() {
+        return dx;
+    }
+
+    public void setDx(Register dx) {
+        this.dx = dx;
+    }
+    
+    
 }
