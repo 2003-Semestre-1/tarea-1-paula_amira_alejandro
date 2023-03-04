@@ -56,7 +56,7 @@ public class FileManager {
         return filePath;
     }
     
-    public void loadFileInstructions(String filePath){
+    public ArrayList<MemoryRegister> loadFileInstructions(String filePath){
         try {
             
             fileReader = new BufferedReader(new FileReader(filePath));
@@ -68,7 +68,7 @@ public class FileManager {
                 if(!this.validateInstruction(instruction,instructionPos)){                                          
                     
                     addError();
-                    return;
+                    return null;
                 } 
                 
                 this.instructions.add(this.processInstruction(instruction));
@@ -85,13 +85,13 @@ public class FileManager {
                 System.out.println("Instruccion #"+i+": "+currentInstruction);
             }
             
-            Memory memory = new Memory(instructions);
-            CPU miniPC = new CPU(memory);
             
             if(instructionPos == 0){
                 JOptionPane.showMessageDialog (null, "El archivo no puede estar vacío.", "Error: archivo vacío", JOptionPane.ERROR_MESSAGE);       
-                return;
+                return null;
             }
+            
+            return instructions;
             
         } catch (IOException e) {
             
@@ -99,6 +99,7 @@ public class FileManager {
             Logger.getLogger(FileManager.class.getName()).log(Level.SEVERE, null, e);
             
         }
+        return null;
     }
     
     public MemoryRegister processInstruction(String instruction){

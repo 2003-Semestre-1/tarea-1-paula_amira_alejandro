@@ -6,6 +6,7 @@
 package Model;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 /**
  *
@@ -13,19 +14,47 @@ import java.util.ArrayList;
  */
 public class Memory {
     
-    ArrayList<MemoryRegister> memoryRegisters;
-    int size = 0;
-    int allocatedSize = 0;
+    ArrayList<Optional<MemoryRegister>> memoryRegisters = new ArrayList();
+    int size = 100;
+    int allocatedSize;
 
-    public Memory(ArrayList<MemoryRegister> memoryRegisters) {
-        this.memoryRegisters = memoryRegisters;
+    public Memory(int allocatedSize) {
+        this.allocatedSize = allocatedSize;
+        for(int i = 0 ; i < size ; i ++){
+            memoryRegisters.add(Optional.empty());                 
+        }
+    }
+    
+    public boolean isFull(){
+        
+        return false;
     }
 
-    public ArrayList<MemoryRegister> getMemoryRegisters() {
+    public void allocateMemory(ArrayList<MemoryRegister> instructionSet){
+        int minIndex = 10; // Minimum value of range
+        int maxIndex = size-1;
+        int allocationStartIndex = (int)Math.floor(Math.random() * ((maxIndex) - minIndex + 1) + minIndex);
+        
+        while (allocationStartIndex + instructionSet.size() > maxIndex){
+            allocationStartIndex = (int)Math.floor(Math.random() * ((maxIndex) - minIndex + 1) + minIndex);
+        }
+        System.out.println(allocationStartIndex);
+        
+        int instructionSetIndex = 0;
+        for(int i = allocationStartIndex ; i < instructionSet.size()+allocationStartIndex; i ++){
+            this.memoryRegisters.set(i, Optional.of(instructionSet.get(instructionSetIndex)));
+            System.out.println("Instruccion agregada a la memoria");
+            instructionSetIndex++;
+         }
+        System.out.println(this.memoryRegisters);
+        System.out.println(this.memoryRegisters.size());
+    }
+
+    public ArrayList<Optional<MemoryRegister>> getMemoryRegisters() {
         return memoryRegisters;
     }
 
-    public void setMemoryRegisters(ArrayList<MemoryRegister> memoryRegisters) {
+    public void setMemoryRegisters(ArrayList<Optional<MemoryRegister>> memoryRegisters) {
         this.memoryRegisters = memoryRegisters;
     }
 

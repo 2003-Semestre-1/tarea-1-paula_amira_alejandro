@@ -5,14 +5,21 @@
  */
 package View;
 
+import Controller.MiniPCController;
+import Model.CPU;
 import Model.FileManager;
+import Model.Memory;
+import Model.MemoryRegister;
+import java.util.ArrayList;
 
 /**
  *
  * @author aleja
  */
 public class MiniPCMenu extends javax.swing.JFrame {
-
+    
+    public MiniPCController controller = new MiniPCController();
+    
     /**
      * Creates new form NewJFrame
      */
@@ -78,7 +85,14 @@ public class MiniPCMenu extends javax.swing.JFrame {
             String filePath = fileManager.selectFile(this);
             fileManager.loadOperations();
             fileManager.loadDataRegisters();
-            fileManager.loadFileInstructions(filePath);
+            ArrayList<MemoryRegister> instructionSet = fileManager.loadFileInstructions(filePath);
+            System.out.println(instructionSet);
+            
+            Memory memory = new Memory(instructionSet.size());
+            memory.allocateMemory(instructionSet);
+            CPU cpu = new CPU(memory);
+            this.controller.setCpu(cpu);
+            System.out.println(cpu);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
