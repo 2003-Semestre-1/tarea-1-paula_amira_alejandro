@@ -10,5 +10,11 @@ package Model;
  * @author aleja
  */
 public class Memory {
+    private int ax;
+    private int bx;
+    private int cx;
+    private int dx;
+    
+    
     
 }

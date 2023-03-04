@@ -5,7 +5,6 @@
  */
 package Model;
 
-import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
 import java.awt.Component;
 import java.io.BufferedReader;
 import java.io.File;
