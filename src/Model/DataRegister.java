@@ -10,5 +10,23 @@ package Model;
  * @author aleja
  */
 public class DataRegister {
-    
+    private String nombre;
+    private int valor;
+
+    public DataRegister(String nombre) {
+        this.nombre = nombre;
+        this.valor = 0;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public int getValor() {
+        return valor;
+    }
+
+    public void setValor(int valor) {
+        this.valor = valor;
+    }
 }
