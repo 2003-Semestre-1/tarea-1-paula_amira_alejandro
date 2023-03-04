@@ -26,7 +26,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class FileManager {
     
     BufferedReader fileReader;
-    ArrayList<MemoryRegister> instructions;
+    ArrayList<DataRegister> instructions = new ArrayList<DataRegister>();
     HashMap<String,Integer> operations;
     HashMap<String,Integer> dataRegisters;
     int errorAmount = 0;
@@ -70,12 +70,17 @@ public class FileManager {
                     return;
                 } 
                 
-                this.processInstruction(instruction);
+                this.instructions.add(this.processInstruction(instruction));
                 System.out.println("Instruccion es: " + instruction);
                 
                 instructionPos++;
                 instruction = fileReader.readLine();
                 
+            }
+            
+            for (int i = 0; i < instructions.size(); i++) {
+                String currentInstruction = instructions.get(i).convertToBinary();
+                System.out.println("Instruccion #"+i+": "+currentInstruction);
             }
             
             if(instructionPos == 0){
@@ -175,11 +180,11 @@ public class FileManager {
         this.errorAmount = errorAmount;
     }
     
-    public ArrayList<MemoryRegister> getInstructions() {
+    public ArrayList<DataRegister> getInstructions() {
         return instructions;
     }
 
-    public void setInstructions(ArrayList<MemoryRegister> instructions) {
+    public void setInstructions(ArrayList<DataRegister> instructions) {
         this.instructions = instructions;
     }
     
