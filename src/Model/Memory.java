@@ -17,6 +17,7 @@ public class Memory {
     ArrayList<Optional<MemoryRegister>> memoryRegisters = new ArrayList();
     int size = 100;
     int allocatedSize;
+    int allocationStartIndex;
 
     public Memory(int allocatedSize) {
         this.allocatedSize = allocatedSize;
@@ -39,6 +40,7 @@ public class Memory {
             allocationStartIndex = (int)Math.floor(Math.random() * ((maxIndex) - minIndex + 1) + minIndex);
         }
         System.out.println(allocationStartIndex);
+        this.setAllocationStartIndex(allocationStartIndex);
         
         int instructionSetIndex = 0;
         for(int i = allocationStartIndex ; i < instructionSet.size()+allocationStartIndex; i ++){
@@ -49,6 +51,16 @@ public class Memory {
         System.out.println(this.memoryRegisters);
         System.out.println(this.memoryRegisters.size());
     }
+
+    public int getAllocationStartIndex() {
+        return allocationStartIndex;
+    }
+
+    public void setAllocationStartIndex(int allocationStartIndex) {
+        this.allocationStartIndex = allocationStartIndex;
+    }
+    
+    
 
     public ArrayList<Optional<MemoryRegister>> getMemoryRegisters() {
         return memoryRegisters;

@@ -11,6 +11,8 @@ import Model.FileManager;
 import Model.Memory;
 import Model.MemoryRegister;
 import java.util.ArrayList;
+import javax.swing.JLabel;
+import javax.swing.JTable;
 
 /**
  *
@@ -36,87 +38,97 @@ public class MiniPCMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        nextInstructionBtn1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        loadFileBtn = new javax.swing.JButton();
+        nextInstructionBtn = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
+        lblAX = new javax.swing.JLabel();
+        lblNumberAX = new javax.swing.JLabel();
+        lblBX = new javax.swing.JLabel();
+        lblCX = new javax.swing.JLabel();
+        lblDX = new javax.swing.JLabel();
+        lblNumberBX = new javax.swing.JLabel();
+        lblNumberCX = new javax.swing.JLabel();
+        lblNumberDX = new javax.swing.JLabel();
+        lblPC = new javax.swing.JLabel();
+        lblNumberPC = new javax.swing.JLabel();
+        lblNumberAC = new javax.swing.JLabel();
+        lblAC = new javax.swing.JLabel();
+        lblIR = new javax.swing.JLabel();
+        lblNumberIR = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
+        tblCode = new javax.swing.JTable();
+        lblRegistros = new javax.swing.JLabel();
+        nextInstructionBtn3 = new javax.swing.JButton();
+        nextInstructionBtn4 = new javax.swing.JButton();
+
+        nextInstructionBtn1.setText("Siguiente instrucción");
+        nextInstructionBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nextInstructionBtn1ActionPerformed(evt);
+            }
+        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton2.setText("Cargar archivo ");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        loadFileBtn.setText("Cargar archivo ");
+        loadFileBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                loadFileBtnActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Siguiente instrucción");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        nextInstructionBtn.setText("Siguiente instrucción");
+        nextInstructionBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                nextInstructionBtnActionPerformed(evt);
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel2.setText("AX:");
+        lblAX.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        lblAX.setText("AX:");
 
-        jLabel3.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel3.setText("0");
+        lblNumberAX.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        lblNumberAX.setText("0");
 
-        jLabel4.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel4.setText("BX:");
+        lblBX.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        lblBX.setText("BX:");
 
-        jLabel5.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel5.setText("CX:");
+        lblCX.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        lblCX.setText("CX:");
 
-        jLabel6.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel6.setText("DX:");
+        lblDX.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        lblDX.setText("DX:");
 
-        jLabel7.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel7.setText("0");
+        lblNumberBX.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        lblNumberBX.setText("0");
 
-        jLabel8.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel8.setText("0");
+        lblNumberCX.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        lblNumberCX.setText("0");
 
-        jLabel9.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel9.setText("0");
+        lblNumberDX.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        lblNumberDX.setText("0");
 
-        jLabel10.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel10.setText("PC:");
+        lblPC.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        lblPC.setText("PC:");
 
-        jLabel11.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel11.setText("0");
+        lblNumberPC.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        lblNumberPC.setText("0");
 
-        jLabel12.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel12.setText("0");
+        lblNumberAC.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        lblNumberAC.setText("0");
 
-        jLabel13.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel13.setText("AC:");
+        lblAC.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        lblAC.setText("AC:");
 
-        jLabel14.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel14.setText("IR:");
+        lblIR.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        lblIR.setText("IR:");
 
-        jLabel15.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel15.setText("0");
+        lblNumberIR.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        lblNumberIR.setText("0");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblCode.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -213,8 +225,8 @@ public class MiniPCMenu extends javax.swing.JFrame {
                 "Codigo ASM", "Codigo binario", "Address"
             }
         ));
-        jTable1.setRowHeight(30);
-        jScrollPane1.setViewportView(jTable1);
+        tblCode.setRowHeight(30);
+        jScrollPane1.setViewportView(tblCode);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -224,34 +236,34 @@ public class MiniPCMenu extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addComponent(lblAX)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel3))
+                        .addComponent(lblNumberAX))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
+                        .addComponent(lblBX)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel7)))
+                        .addComponent(lblNumberBX)))
                 .addGap(90, 90, 90)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel5))
+                    .addComponent(lblDX)
+                    .addComponent(lblCX))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel9))
+                    .addComponent(lblNumberCX)
+                    .addComponent(lblNumberDX))
                 .addGap(87, 87, 87)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel13)
-                    .addComponent(jLabel10))
+                    .addComponent(lblAC)
+                    .addComponent(lblPC))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel11)
+                        .addComponent(lblNumberPC)
                         .addGap(51, 51, 51)
-                        .addComponent(jLabel14)
+                        .addComponent(lblIR)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel15))
-                    .addComponent(jLabel12))
+                        .addComponent(lblNumberIR))
+                    .addComponent(lblNumberAC))
                 .addContainerGap(56, Short.MAX_VALUE))
             .addComponent(jScrollPane1)
         );
@@ -262,62 +274,81 @@ public class MiniPCMenu extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel8))
+                            .addComponent(lblAX)
+                            .addComponent(lblNumberAX)
+                            .addComponent(lblCX)
+                            .addComponent(lblNumberCX))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel13)
-                            .addComponent(jLabel12))
+                            .addComponent(lblBX)
+                            .addComponent(lblNumberBX)
+                            .addComponent(lblDX)
+                            .addComponent(lblNumberDX)
+                            .addComponent(lblAC)
+                            .addComponent(lblNumberAC))
                         .addGap(15, 15, 15))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel14)
-                            .addComponent(jLabel15))
+                            .addComponent(lblPC)
+                            .addComponent(lblNumberPC)
+                            .addComponent(lblIR)
+                            .addComponent(lblNumberIR))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 609, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(240, 240, 240))
         );
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel1.setText("Registros");
+        lblRegistros.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        lblRegistros.setText("Registros");
+
+        nextInstructionBtn3.setText("Salir");
+        nextInstructionBtn3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nextInstructionBtn3ActionPerformed(evt);
+            }
+        });
+
+        nextInstructionBtn4.setText("Limpiar");
+        nextInstructionBtn4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nextInstructionBtn4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(201, 201, 201)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton3))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(81, 81, 81)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(61, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(286, 286, 286))
+                .addComponent(lblRegistros, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(81, 81, 81)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(loadFileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(nextInstructionBtn)
+                        .addGap(18, 18, 18)
+                        .addComponent(nextInstructionBtn4, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(nextInstructionBtn3, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(loadFileBtn)
+                    .addComponent(nextInstructionBtn)
+                    .addComponent(nextInstructionBtn4)
+                    .addComponent(nextInstructionBtn3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblRegistros, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -328,7 +359,7 @@ public class MiniPCMenu extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 16, Short.MAX_VALUE))
+                .addGap(0, 41, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -340,13 +371,115 @@ public class MiniPCMenu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void loadFileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadFileBtnActionPerformed
+        if (evt.getSource() == loadFileBtn) {
+            FileManager fileManager = new FileManager();
+            String filePath = fileManager.selectFile(this);
+            fileManager.loadOperations();
+            fileManager.loadDataRegisters();
+            ArrayList<MemoryRegister> instructionSet = fileManager.loadFileInstructions(filePath);
+            System.out.println(instructionSet);
+            
+            Memory memory = new Memory(instructionSet.size());
+            memory.allocateMemory(instructionSet);
+            CPU cpu = new CPU(memory);
+            this.controller.setCpu(cpu);
+            System.out.println(cpu);
+            
+            this.updateTable(instructionSet);
+        }
+    }//GEN-LAST:event_loadFileBtnActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void updateTable(ArrayList<MemoryRegister> instructionSet) {                                            
+        this.getTblCode().setValueAt(instructionSet.get(0).getAsmInstructionString(), 0, 0);
+        this.getTblCode().setValueAt(instructionSet.get(0).convertToBinary(), 0, 1);
+        int startAddress = this.controller.getCpu().getMemory().getAllocationStartIndex();
+        this.getTblCode().setValueAt(startAddress, 0, 2);
+    } 
+    
+    public JTable getTblCode() {
+        return tblCode;
+    }
+
+    public void setTblCode(JTable tblCode) {
+        this.tblCode = tblCode;
+    }
+
+    
+    
+    public JLabel getLblNumberAC() {
+        return lblNumberAC;
+    }
+
+    public void setLblNumberAC(JLabel lblNumberAC) {
+        this.lblNumberAC = lblNumberAC;
+    }
+
+    public JLabel getLblNumberAX() {
+        return lblNumberAX;
+    }
+
+    public void setLblNumberAX(JLabel lblNumberAX) {
+        this.lblNumberAX = lblNumberAX;
+    }
+
+    public JLabel getLblNumberBX() {
+        return lblNumberBX;
+    }
+
+    public void setLblNumberBX(JLabel lblNumberBX) {
+        this.lblNumberBX = lblNumberBX;
+    }
+
+    public JLabel getLblNumberCX() {
+        return lblNumberCX;
+    }
+
+    public void setLblNumberCX(JLabel lblNumberCX) {
+        this.lblNumberCX = lblNumberCX;
+    }
+
+    public JLabel getLblNumberDX() {
+        return lblNumberDX;
+    }
+
+    public void setLblNumberDX(JLabel lblNumberDX) {
+        this.lblNumberDX = lblNumberDX;
+    }
+
+    public JLabel getLblNumberIR() {
+        return lblNumberIR;
+    }
+
+    public void setLblNumberIR(JLabel lblNumberIR) {
+        this.lblNumberIR = lblNumberIR;
+    }
+
+    public JLabel getLblNumberPC() {
+        return lblNumberPC;
+    }
+
+    public void setLblNumberPC(JLabel lblNumberPC) {
+        this.lblNumberPC = lblNumberPC;
+    }
+
+    
+    
+    private void nextInstructionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextInstructionBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_nextInstructionBtnActionPerformed
+
+    private void nextInstructionBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextInstructionBtn1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nextInstructionBtn1ActionPerformed
+
+    private void nextInstructionBtn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextInstructionBtn3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nextInstructionBtn3ActionPerformed
+
+    private void nextInstructionBtn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextInstructionBtn4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nextInstructionBtn4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -385,26 +518,29 @@ public class MiniPCMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblAC;
+    private javax.swing.JLabel lblAX;
+    private javax.swing.JLabel lblBX;
+    private javax.swing.JLabel lblCX;
+    private javax.swing.JLabel lblDX;
+    private javax.swing.JLabel lblIR;
+    private javax.swing.JLabel lblNumberAC;
+    private javax.swing.JLabel lblNumberAX;
+    private javax.swing.JLabel lblNumberBX;
+    private javax.swing.JLabel lblNumberCX;
+    private javax.swing.JLabel lblNumberDX;
+    private javax.swing.JLabel lblNumberIR;
+    private javax.swing.JLabel lblNumberPC;
+    private javax.swing.JLabel lblPC;
+    private javax.swing.JLabel lblRegistros;
+    private javax.swing.JButton loadFileBtn;
+    private javax.swing.JButton nextInstructionBtn;
+    private javax.swing.JButton nextInstructionBtn1;
+    private javax.swing.JButton nextInstructionBtn3;
+    private javax.swing.JButton nextInstructionBtn4;
+    private javax.swing.JTable tblCode;
     // End of variables declaration//GEN-END:variables
 }

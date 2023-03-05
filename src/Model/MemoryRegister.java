@@ -13,12 +13,21 @@ public class MemoryRegister extends Register {
     
     public Integer op;
     public Integer address;
+    public Integer register;
     
-    public MemoryRegister(Integer op, Integer address, Integer value, String registerType) {
+    public MemoryRegister(Integer op, Integer register, Integer value, String registerType) {
         super(value, registerType);
         this.op = op;
-        this.address = address;
+        this.register = register;
     }
+
+    public Integer getRegister() {
+        return register;
+    }
+
+    public void setRegister(Integer register) {
+        this.register = register;
+    }    
 
     public Integer getOp() {
         return op;
@@ -28,13 +37,6 @@ public class MemoryRegister extends Register {
         this.op = op;
     }
 
-    public Integer getAddress() {
-        return address;
-    }
-
-    public void setAddress(Integer address) {
-        this.address = address;
-    }
 
     @Override
     public String convertToBinary(){
@@ -44,8 +46,8 @@ public class MemoryRegister extends Register {
         String op = Integer.toBinaryString(this.op);
         String op4bit = String.format("%4s", Integer.toBinaryString(this.getOp())).replace(' ', '0');
         
-        String address = Integer.toBinaryString(this.address);
-        String address4bit = String.format("%4s", Integer.toBinaryString(this.getAddress())).replace(' ', '0');
+        String address = Integer.toBinaryString(this.register);
+        String address4bit = String.format("%4s", Integer.toBinaryString(this.getRegister())).replace(' ', '0');
         
         String value = Integer.toString(this.value,2);
         if (this.value < 0){
@@ -70,6 +72,5 @@ public class MemoryRegister extends Register {
         
         return binaryString;
     }
-    
     
 }

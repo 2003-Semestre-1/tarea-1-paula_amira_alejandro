@@ -13,6 +13,7 @@ public abstract class Register {
     
     public Integer value;
     public String registerType;
+    public String asmInstructionString;
 
     public Register(Integer value, String registerType) {
         this.value = value;
@@ -36,5 +37,14 @@ public abstract class Register {
     public void setRegisterType(String registerType) {
         this.registerType = registerType;
     }
+
+    public String getAsmInstructionString() {
+        return asmInstructionString;
+    }
+
+    public void setAsmInstructionString(String asmInstructionString) {
+        this.asmInstructionString = asmInstructionString;
+    }
+    
     
 }

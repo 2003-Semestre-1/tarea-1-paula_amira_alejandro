@@ -43,7 +43,6 @@ public class DataRegister extends Register{
         
         return binaryString;
     }
-
     
     
 }

@@ -121,9 +121,10 @@ public class FileManager {
         
         memoryRegisterInstruction = new MemoryRegister(opValue, registerValue, value, "Data");
         System.out.println("Operador: "+memoryRegisterInstruction.getOp());
-        System.out.println("Registro: "+memoryRegisterInstruction.getAddress());
+        System.out.println("Registro: "+memoryRegisterInstruction.getRegister());
         System.out.println("Valor: "+memoryRegisterInstruction.getValue());
         System.out.println("Tipo de registro: "+memoryRegisterInstruction.getRegisterType());
+        memoryRegisterInstruction.setAsmInstructionString(instruction);
         
         return memoryRegisterInstruction;
     }
