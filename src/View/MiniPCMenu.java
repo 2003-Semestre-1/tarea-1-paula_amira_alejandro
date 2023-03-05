@@ -131,7 +131,7 @@ public class MiniPCMenu extends javax.swing.JFrame {
         lblIR.setText("IR:");
 
         lblNumberIR.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        lblNumberIR.setText("0");
+        lblNumberIR.setText(" ");
 
         tblCode.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -248,57 +248,56 @@ public class MiniPCMenu extends javax.swing.JFrame {
                         .addComponent(lblBX)
                         .addGap(18, 18, 18)
                         .addComponent(lblNumberBX)))
-                .addGap(90, 90, 90)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblDX)
-                    .addComponent(lblCX))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblNumberCX)
-                    .addComponent(lblNumberDX))
-                .addGap(87, 87, 87)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblAC)
-                    .addComponent(lblPC))
-                .addGap(18, 18, 18)
+                .addGap(56, 56, 56)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(lblNumberPC)
-                        .addGap(51, 51, 51)
-                        .addComponent(lblIR)
+                        .addComponent(lblDX)
                         .addGap(18, 18, 18)
-                        .addComponent(lblNumberIR))
-                    .addComponent(lblNumberAC))
-                .addContainerGap(56, Short.MAX_VALUE))
-            .addComponent(jScrollPane1)
+                        .addComponent(lblNumberDX))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(lblCX)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblNumberCX)))
+                .addGap(39, 39, 39)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(lblPC)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblNumberPC)
+                        .addGap(27, 27, 27)
+                        .addComponent(lblIR)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblNumberIR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(lblAC)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblNumberAC)))
+                .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblAX)
-                            .addComponent(lblNumberAX)
-                            .addComponent(lblCX)
-                            .addComponent(lblNumberCX))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblBX)
-                            .addComponent(lblNumberBX)
-                            .addComponent(lblDX)
-                            .addComponent(lblNumberDX)
-                            .addComponent(lblAC)
-                            .addComponent(lblNumberAC))
-                        .addGap(15, 15, 15))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblPC)
-                            .addComponent(lblNumberPC)
-                            .addComponent(lblIR)
-                            .addComponent(lblNumberIR))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblAX)
+                        .addComponent(lblNumberAX)
+                        .addComponent(lblCX)
+                        .addComponent(lblNumberCX)
+                        .addComponent(lblPC)
+                        .addComponent(lblNumberPC)
+                        .addComponent(lblIR))
+                    .addComponent(lblNumberIR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblBX)
+                    .addComponent(lblNumberBX)
+                    .addComponent(lblDX)
+                    .addComponent(lblNumberDX)
+                    .addComponent(lblAC)
+                    .addComponent(lblNumberAC))
+                .addGap(15, 15, 15)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 609, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(240, 240, 240))
         );
@@ -365,7 +364,7 @@ public class MiniPCMenu extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -410,7 +409,7 @@ public class MiniPCMenu extends javax.swing.JFrame {
         }
         this.getLblNumberAC().setText("0");
         this.getLblNumberPC().setText("0");
-        this.getLblNumberIR().setText("0");
+        this.getLblNumberIR().setText(" ");
         this.getLblNumberAX().setText("0");
         this.getLblNumberBX().setText("0");
         this.getLblNumberCX().setText("0");
@@ -426,6 +425,8 @@ public class MiniPCMenu extends javax.swing.JFrame {
         this.getTblCode().setValueAt(instructionSet.get(row).getAsmInstructionString(), row, 0);
         this.getTblCode().setValueAt(instructionSet.get(row).convertToBinary(), row, 1);
         this.getTblCode().setValueAt(this.getCurrentAddress(), row, 2);
+        this.getLblNumberPC().setText(""+this.getCurrentAddress());
+        this.getLblNumberIR().setText(this.getFileManager().getInstructions().get(this.getRowCount()).getAsmInstructionString());
         this.setRowCount(this.getRowCount()+1);
         this.setCurrentAddress(this.getCurrentAddress()+1);
     } 

@@ -37,7 +37,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="26" max="32767" attributes="0"/>
+              <EmptySpace pref="32" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -135,70 +135,67 @@
                               <Component id="lblNumberBX" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="lblDX" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblCX" alignment="1" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblNumberCX" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblNumberDX" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="lblDX" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="lblNumberDX" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="lblCX" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="lblNumberCX" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="lblAC" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblPC" alignment="1" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="lblNumberPC" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-                              <Component id="lblIR" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblPC" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="lblNumberIR" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblNumberPC" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                              <Component id="lblIR" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lblNumberIR" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="lblNumberAC" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="lblAC" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="lblNumberAC" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace pref="56" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" alignment="0" pref="560" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lblAX" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblNumberAX" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblCX" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblNumberCX" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lblBX" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblNumberBX" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblDX" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblNumberDX" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblAC" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblNumberAC" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblAX" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblNumberAX" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblCX" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblNumberCX" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblPC" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblNumberPC" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblIR" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lblPC" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblNumberPC" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblIR" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblNumberIR" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="lblNumberIR" max="32767" attributes="0"/>
                       </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblBX" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblNumberBX" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblDX" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblNumberDX" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblAC" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblNumberAC" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="609" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="240" max="-2" attributes="0"/>
                   </Group>
@@ -315,7 +312,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Dialog" size="24" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="0"/>
+                <Property name="text" type="java.lang.String" value=" "/>
               </Properties>
             </Component>
             <Container class="javax.swing.JScrollPane" name="jScrollPane1">
