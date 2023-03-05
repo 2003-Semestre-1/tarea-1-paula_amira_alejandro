@@ -104,13 +104,13 @@ public class FileManager {
     
     public MemoryRegister processInstruction(String instruction){
         MemoryRegister memoryRegisterInstruction = null;
+        try{
+            String[] split1 = instruction.split(",");
+            String[] split2 = split1[0].split(" ");
         
-        String[] split1 = instruction.split(",");
-        String[] split2 = split1[0].split(" ");
-        
-        String operator = split2[0].toLowerCase();
-        String register = split2[1].toLowerCase();
-        int value = 0;  
+            String operator = split2[0].toLowerCase();
+            String register = split2[1].toLowerCase();
+            int value = 0;  
         
         if(split1.length == 2){
             value = Integer.parseInt(split1[1].trim().toLowerCase());
@@ -125,6 +125,18 @@ public class FileManager {
         System.out.println("Valor: "+memoryRegisterInstruction.getValue());
         System.out.println("Tipo de registro: "+memoryRegisterInstruction.getRegisterType());
         memoryRegisterInstruction.setAsmInstructionString(instruction);
+        }
+        
+        catch(ArrayIndexOutOfBoundsException e){
+            JOptionPane.showMessageDialog (null, "Las instrucciones dadas no se pueden ejecutar.", "Error: Instrucciones inválidas", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(FileManager.class.getName()).log(Level.SEVERE, null, e);
+            return null;
+        }
+        catch(NullPointerException e){
+            JOptionPane.showMessageDialog (null, "Las instrucciones dadas no se pueden ejecutar.", "Error: Instrucciones inválidas", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(FileManager.class.getName()).log(Level.SEVERE, null, e);
+            return null;
+        }
         
         return memoryRegisterInstruction;
     }

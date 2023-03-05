@@ -386,22 +386,17 @@ public class MiniPCMenu extends javax.swing.JFrame {
             fileManager.loadDataRegisters();
             ArrayList<MemoryRegister> instructionSet = fileManager.loadFileInstructions(filePath);
             if (instructionSet != null){
-                System.out.println(instructionSet);
             
                 Memory memory = new Memory(instructionSet.size());
                 memory.allocateMemory(instructionSet);
                 CPU cpu = new CPU(memory);
                 this.getController().setCpu(cpu);
                 this.setCurrentAddress(this.controller.getCpu().getMemory().getAllocationStartIndex());
-                System.out.println(cpu);
                 
                 MemoryRegister currentInstruction = this.getFileManager().getInstructions().get(this.getRowCount());
-                System.out.println(currentInstruction);
-                System.out.println(this.getController().getCpu().getDataRegisters().get(0).getValue());
-                System.out.println(this.getController().getCpu().getDataRegisters().get(0).getRegisterType());
-                System.out.println(currentInstruction.getOp());
-                System.out.println(currentInstruction.getRegister());
-                System.out.println(currentInstruction.getValue());
+                this.getController().getCpu().setInstructionRegister(currentInstruction.getAsmInstructionString());
+                this.getController().getCpu().setProgramCounter(this.getRowCount());
+                
                 this.getController().executeInstruction(currentInstruction.getOp(),currentInstruction.getRegister(),currentInstruction.getValue());
                 this.updateTable(this.fileManager.getInstructions(),this.getRowCount());
             }
@@ -561,9 +556,10 @@ public class MiniPCMenu extends javax.swing.JFrame {
         }
         else{
             MemoryRegister currentInstruction = this.getFileManager().getInstructions().get(this.getRowCount());
-            System.out.println(currentInstruction);
+            this.getController().getCpu().setInstructionRegister(currentInstruction.getAsmInstructionString());
             this.getController().executeInstruction(currentInstruction.getOp(),currentInstruction.getRegister(),currentInstruction.getValue());
             this.updateTable(this.fileManager.getInstructions(), this.getRowCount());
+            this.getController().getCpu().setProgramCounter(this.getRowCount());
         }
     }//GEN-LAST:event_nextInstructionBtnActionPerformed
 
