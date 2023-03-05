@@ -21,6 +21,9 @@ import javax.swing.JTable;
 public class MiniPCMenu extends javax.swing.JFrame {
     
     public MiniPCController controller = new MiniPCController();
+    public FileManager fileManager = new FileManager();
+    int rowCount = 0;
+    int currentAddress = 0;
     
     /**
      * Creates new form NewJFrame
@@ -373,7 +376,6 @@ public class MiniPCMenu extends javax.swing.JFrame {
 
     private void loadFileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadFileBtnActionPerformed
         if (evt.getSource() == loadFileBtn) {
-            FileManager fileManager = new FileManager();
             String filePath = fileManager.selectFile(this);
             fileManager.loadOperations();
             fileManager.loadDataRegisters();
@@ -383,19 +385,49 @@ public class MiniPCMenu extends javax.swing.JFrame {
             Memory memory = new Memory(instructionSet.size());
             memory.allocateMemory(instructionSet);
             CPU cpu = new CPU(memory);
-            this.controller.setCpu(cpu);
+            this.getController().setCpu(cpu);
+            this.setCurrentAddress(this.controller.getCpu().getMemory().getAllocationStartIndex());
             System.out.println(cpu);
             
-            this.updateTable(instructionSet);
+            this.updateTable(this.fileManager.getInstructions(),this.getRowCount(), this.getCurrentAddress());
         }
     }//GEN-LAST:event_loadFileBtnActionPerformed
 
-    private void updateTable(ArrayList<MemoryRegister> instructionSet) {                                            
-        this.getTblCode().setValueAt(instructionSet.get(0).getAsmInstructionString(), 0, 0);
-        this.getTblCode().setValueAt(instructionSet.get(0).convertToBinary(), 0, 1);
-        int startAddress = this.controller.getCpu().getMemory().getAllocationStartIndex();
-        this.getTblCode().setValueAt(startAddress, 0, 2);
+    private void updateTable(ArrayList<MemoryRegister> instructionSet, int row, int addressIndex) {                                            
+        this.getTblCode().setValueAt(instructionSet.get(row).getAsmInstructionString(), row, 0);
+        this.getTblCode().setValueAt(instructionSet.get(row).convertToBinary(), row, 1);
+        this.getTblCode().setValueAt(this.getCurrentAddress(), row, 2);
+        this.setRowCount(this.getRowCount()+1);
+        this.setCurrentAddress(this.getCurrentAddress()+1);
     } 
+
+    public MiniPCController getController() {
+        return controller;
+    }
+
+    public void setController(MiniPCController controller) {
+        this.controller = controller;
+    }
+
+    public int getCurrentAddress() {
+        return currentAddress;
+    }
+
+    public void setCurrentAddress(int currentAddress) {
+        this.currentAddress = currentAddress;
+    }
+
+    
+    
+    public int getRowCount() {
+        return rowCount;
+    }
+
+    public void setRowCount(int rowCount) {
+        this.rowCount = rowCount;
+    }
+    
+    
     
     public JTable getTblCode() {
         return tblCode;
@@ -463,10 +495,18 @@ public class MiniPCMenu extends javax.swing.JFrame {
         this.lblNumberPC = lblNumberPC;
     }
 
+    public FileManager getFileManager() {
+        return fileManager;
+    }
+
+    public void setFileManager(FileManager fileManager) {
+        this.fileManager = fileManager;
+    }
+
     
     
     private void nextInstructionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextInstructionBtnActionPerformed
-        // TODO add your handling code here:
+        this.updateTable(this.fileManager.getInstructions(), this.getRowCount(), this.getCurrentAddress());
     }//GEN-LAST:event_nextInstructionBtnActionPerformed
 
     private void nextInstructionBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextInstructionBtn1ActionPerformed
