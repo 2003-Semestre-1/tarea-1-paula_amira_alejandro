@@ -403,8 +403,6 @@ public class MiniPCMenu extends javax.swing.JFrame {
                 System.out.println(currentInstruction.getRegister());
                 System.out.println(currentInstruction.getValue());
                 this.getController().executeInstruction(currentInstruction.getOp(),currentInstruction.getRegister(),currentInstruction.getValue());
-                System.out.println(this.getController().getCpu().getDataRegisters().get(0).getValue());
-                System.out.println(this.getController().getCpu().getDataRegisters().get(0).getRegisterType());
                 this.updateTable(this.fileManager.getInstructions(),this.getRowCount());
             }
             
@@ -441,6 +439,7 @@ public class MiniPCMenu extends javax.swing.JFrame {
         this.getLblNumberCX().setText(this.getController().getCpu().getDataRegisters().get(2).getValue()+"");
         this.getLblNumberDX().setText(this.getController().getCpu().getDataRegisters().get(3).getValue()+"");
         
+        this.getLblNumberAC().setText(this.getController().getCpu().getAccumulator()+"");
         this.getLblNumberPC().setText(""+this.getCurrentAddress());
         this.getLblNumberIR().setText(this.getFileManager().getInstructions().get(this.getRowCount()).getAsmInstructionString());
         

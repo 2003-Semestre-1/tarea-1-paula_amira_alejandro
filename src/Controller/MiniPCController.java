@@ -32,19 +32,19 @@ public class MiniPCController {
         
         switch(op) {
         case 1:
-            
+            this.loadInstruction(register);
             break;
         case 2:
-            // code block
+            this.storeInstruction(register);
             break;
         case 3:
             this.movInstruction(register, value);
             break;
         case 4:
-            // code block
+            this.subInstruction(register);
             break;
         case 5:
-            // code block
+            this.addInstruction(register);
             break;
         default:
             JOptionPane.showMessageDialog (null, "La instrucción dada no se puede ejecutar.", "Error: Instrucción inválida", JOptionPane.ERROR_MESSAGE);
@@ -52,10 +52,30 @@ public class MiniPCController {
         
     }
     
+    public void loadInstruction(int destinationRegister){
+        int loadValue = this.getCpu().getDataRegisters().get(destinationRegister-1).getValue();
+        this.getCpu().setAccumulator(loadValue);
+    }
+    
+    public void storeInstruction(int destinationRegister){
+        int accumulatorValue = this.getCpu().getAccumulator();
+        this.getCpu().getDataRegisters().get(destinationRegister-1).setValue(accumulatorValue);
+    }
+    
     public void movInstruction(int destinationRegister, int value){
-        
         this.getCpu().getDataRegisters().get(destinationRegister-1).setValue(value);
-        
+    }
+    
+    public void subInstruction(int destinationRegister){
+        int subValue = this.getCpu().getDataRegisters().get(destinationRegister-1).getValue();
+        int newValue = this.getCpu().getAccumulator() - subValue;
+        this.getCpu().setAccumulator(newValue);
+    }
+    
+    public void addInstruction(int destinationRegister){
+        int addValue = this.getCpu().getDataRegisters().get(destinationRegister-1).getValue();
+        int newValue = addValue + this.getCpu().getAccumulator();
+        this.getCpu().setAccumulator(newValue);
     }
 
     public CPU getCpu() {
