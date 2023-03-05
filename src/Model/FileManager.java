@@ -128,12 +128,17 @@ public class FileManager {
         }
         
         catch(ArrayIndexOutOfBoundsException e){
-            JOptionPane.showMessageDialog (null, "Las instrucciones dadas no se pueden ejecutar.", "Error: Instrucciones inválidas", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog (null, "La siguiente instrucción no es válida: "+instruction, "Error: Instrucciones inválidas", JOptionPane.ERROR_MESSAGE);
             Logger.getLogger(FileManager.class.getName()).log(Level.SEVERE, null, e);
             return null;
         }
         catch(NullPointerException e){
-            JOptionPane.showMessageDialog (null, "Las instrucciones dadas no se pueden ejecutar.", "Error: Instrucciones inválidas", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog (null, "La siguiente instrucción no es válida ya que o el registro o la instruccion no existen: "+instruction, "Error: Instrucciones inválidas", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(FileManager.class.getName()).log(Level.SEVERE, null, e);
+            return null;
+        }
+        catch(NumberFormatException e){
+            JOptionPane.showMessageDialog (null, "La siguiente instrucción no es válida ya que se esperaba un entero y se dio otro valor: "+instruction, "Error: Valor inválido", JOptionPane.ERROR_MESSAGE);
             Logger.getLogger(FileManager.class.getName()).log(Level.SEVERE, null, e);
             return null;
         }

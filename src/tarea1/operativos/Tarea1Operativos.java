@@ -5,6 +5,8 @@
  */
 package tarea1.operativos;
 
+import View.MiniPCMenu;
+
 /**
  *
  * @author aleja
@@ -15,7 +17,8 @@ public class Tarea1Operativos {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        MiniPCMenu miniPC = new MiniPCMenu();
+        miniPC.setVisible(true);
     }
     
 }
