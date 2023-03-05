@@ -12,6 +12,7 @@ import Model.Memory;
 import Model.MemoryRegister;
 import java.util.ArrayList;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
 /**
@@ -63,8 +64,8 @@ public class MiniPCMenu extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCode = new javax.swing.JTable();
         lblRegistros = new javax.swing.JLabel();
-        nextInstructionBtn3 = new javax.swing.JButton();
-        nextInstructionBtn4 = new javax.swing.JButton();
+        exitBtn = new javax.swing.JButton();
+        cleanTableBtn = new javax.swing.JButton();
 
         nextInstructionBtn1.setText("Siguiente instrucción");
         nextInstructionBtn1.addActionListener(new java.awt.event.ActionListener() {
@@ -133,7 +134,7 @@ public class MiniPCMenu extends javax.swing.JFrame {
 
         tblCode.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
+                {" ", null, null},
                 {null, null, null},
                 {null, null, null},
                 {null, null, null},
@@ -304,17 +305,17 @@ public class MiniPCMenu extends javax.swing.JFrame {
         lblRegistros.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         lblRegistros.setText("Registros");
 
-        nextInstructionBtn3.setText("Salir");
-        nextInstructionBtn3.addActionListener(new java.awt.event.ActionListener() {
+        exitBtn.setText("Salir");
+        exitBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nextInstructionBtn3ActionPerformed(evt);
+                exitBtnActionPerformed(evt);
             }
         });
 
-        nextInstructionBtn4.setText("Limpiar");
-        nextInstructionBtn4.addActionListener(new java.awt.event.ActionListener() {
+        cleanTableBtn.setText("Limpiar");
+        cleanTableBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nextInstructionBtn4ActionPerformed(evt);
+                cleanTableBtnActionPerformed(evt);
             }
         });
 
@@ -336,9 +337,9 @@ public class MiniPCMenu extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(nextInstructionBtn)
                         .addGap(18, 18, 18)
-                        .addComponent(nextInstructionBtn4, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cleanTableBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(nextInstructionBtn3, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(exitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -348,8 +349,8 @@ public class MiniPCMenu extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(loadFileBtn)
                     .addComponent(nextInstructionBtn)
-                    .addComponent(nextInstructionBtn4)
-                    .addComponent(nextInstructionBtn3))
+                    .addComponent(cleanTableBtn)
+                    .addComponent(exitBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblRegistros, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -376,24 +377,49 @@ public class MiniPCMenu extends javax.swing.JFrame {
 
     private void loadFileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadFileBtnActionPerformed
         if (evt.getSource() == loadFileBtn) {
+            this.cleanTable();
+            
             String filePath = fileManager.selectFile(this);
             fileManager.loadOperations();
             fileManager.loadDataRegisters();
             ArrayList<MemoryRegister> instructionSet = fileManager.loadFileInstructions(filePath);
-            System.out.println(instructionSet);
+            if (instructionSet != null){
+                System.out.println(instructionSet);
             
-            Memory memory = new Memory(instructionSet.size());
-            memory.allocateMemory(instructionSet);
-            CPU cpu = new CPU(memory);
-            this.getController().setCpu(cpu);
-            this.setCurrentAddress(this.controller.getCpu().getMemory().getAllocationStartIndex());
-            System.out.println(cpu);
+                Memory memory = new Memory(instructionSet.size());
+                memory.allocateMemory(instructionSet);
+                CPU cpu = new CPU(memory);
+                this.getController().setCpu(cpu);
+                this.setCurrentAddress(this.controller.getCpu().getMemory().getAllocationStartIndex());
+                System.out.println(cpu);
             
-            this.updateTable(this.fileManager.getInstructions(),this.getRowCount(), this.getCurrentAddress());
+                this.updateTable(this.fileManager.getInstructions(),this.getRowCount());
+            }
+            
         }
     }//GEN-LAST:event_loadFileBtnActionPerformed
 
-    private void updateTable(ArrayList<MemoryRegister> instructionSet, int row, int addressIndex) {                                            
+    private void cleanTable(){
+        for (int i = 0; i < this.getTblCode().getRowCount(); i++) {
+                this.getTblCode().setValueAt("", i, 0);
+                this.getTblCode().setValueAt("", i, 1);
+                this.getTblCode().setValueAt("", i, 2);
+        }
+        this.getLblNumberAC().setText("0");
+        this.getLblNumberPC().setText("0");
+        this.getLblNumberIR().setText("0");
+        this.getLblNumberAX().setText("0");
+        this.getLblNumberBX().setText("0");
+        this.getLblNumberCX().setText("0");
+        this.getLblNumberDX().setText("0");
+        this.setRowCount(0);
+        this.setCurrentAddress(0);
+        this.getController().setCpu(null);
+        FileManager newFileManager = new FileManager();
+        this.setFileManager(newFileManager);
+    }
+    
+    private void updateTable(ArrayList<MemoryRegister> instructionSet, int row) {                                            
         this.getTblCode().setValueAt(instructionSet.get(row).getAsmInstructionString(), row, 0);
         this.getTblCode().setValueAt(instructionSet.get(row).convertToBinary(), row, 1);
         this.getTblCode().setValueAt(this.getCurrentAddress(), row, 2);
@@ -506,20 +532,32 @@ public class MiniPCMenu extends javax.swing.JFrame {
     
     
     private void nextInstructionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextInstructionBtnActionPerformed
-        this.updateTable(this.fileManager.getInstructions(), this.getRowCount(), this.getCurrentAddress());
+        if (this.getController().getCpu() == null){
+            JOptionPane.showMessageDialog (null, "Por favor cargue un archivo", "Error: Archivo no cargado", JOptionPane.ERROR_MESSAGE);
+        }
+        else if (this.getRowCount() >= this.fileManager.getInstructions().size()){
+            JOptionPane.showMessageDialog (null, "No quedan más instrucciones que cargar.", "Error: Final del archivo", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        else
+            this.updateTable(this.fileManager.getInstructions(), this.getRowCount());
     }//GEN-LAST:event_nextInstructionBtnActionPerformed
 
     private void nextInstructionBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextInstructionBtn1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_nextInstructionBtn1ActionPerformed
 
-    private void nextInstructionBtn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextInstructionBtn3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nextInstructionBtn3ActionPerformed
+    private void exitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtnActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_exitBtnActionPerformed
 
-    private void nextInstructionBtn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextInstructionBtn4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nextInstructionBtn4ActionPerformed
+    private void cleanTableBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cleanTableBtnActionPerformed
+        if (this.getTblCode().getValueAt(0, 0) == "" || this.getTblCode().getValueAt(0, 0) == " "){
+            JOptionPane.showMessageDialog (null, "No queda nada por limpiar", "Error: Archivo ya fue limpiado", JOptionPane.ERROR_MESSAGE);
+        }
+        else
+            this.cleanTable();
+    }//GEN-LAST:event_cleanTableBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -558,6 +596,8 @@ public class MiniPCMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton cleanTableBtn;
+    private javax.swing.JButton exitBtn;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -579,8 +619,6 @@ public class MiniPCMenu extends javax.swing.JFrame {
     private javax.swing.JButton loadFileBtn;
     private javax.swing.JButton nextInstructionBtn;
     private javax.swing.JButton nextInstructionBtn1;
-    private javax.swing.JButton nextInstructionBtn3;
-    private javax.swing.JButton nextInstructionBtn4;
     private javax.swing.JTable tblCode;
     // End of variables declaration//GEN-END:variables
 }
