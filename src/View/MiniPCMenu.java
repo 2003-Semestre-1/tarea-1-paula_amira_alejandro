@@ -385,9 +385,14 @@ public class MiniPCMenu extends javax.swing.JFrame {
             fileManager.loadOperations();
             fileManager.loadDataRegisters();
             ArrayList<MemoryRegister> instructionSet = fileManager.loadFileInstructions(filePath);
-            if (instructionSet != null){
             
+            if (instructionSet.size() > 90){
+                JOptionPane.showMessageDialog (null, "Hay más de 90 instrucciones por lo que no hay suficiente memoria para correrlas.", "Error: No hay suficiente memoria", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            else if (instructionSet != null){
                 Memory memory = new Memory(instructionSet.size());
+                System.out.println("prueba1");
                 memory.allocateMemory(instructionSet);
                 CPU cpu = new CPU(memory);
                 this.getController().setCpu(cpu);

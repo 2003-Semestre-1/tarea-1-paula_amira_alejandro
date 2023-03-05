@@ -7,6 +7,7 @@ package Model;
 
 import java.util.ArrayList;
 import java.util.Optional;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -36,18 +37,31 @@ public class Memory {
         int maxIndex = size-1;
         int allocationStartIndex = (int)Math.floor(Math.random() * ((maxIndex) - minIndex + 1) + minIndex);
         
-        while (allocationStartIndex + instructionSet.size() > maxIndex){
+        if (instructionSet.size() == 90){
+            allocationStartIndex = 10;
+            this.setAllocationStartIndex(allocationStartIndex);
+            int instructionSetIndex = 0;
+            for(int i = allocationStartIndex ; i < instructionSet.size()+allocationStartIndex; i ++){
+                this.memoryRegisters.set(i, Optional.of(instructionSet.get(instructionSetIndex)));
+                System.out.println("Instruccion agregada a la memoria");
+                instructionSetIndex++;
+            }
+            return;
+        }
+        else{
+            while (allocationStartIndex + instructionSet.size() > maxIndex){
             allocationStartIndex = (int)Math.floor(Math.random() * ((maxIndex) - minIndex + 1) + minIndex);
         }
-        System.out.println(allocationStartIndex);
-        this.setAllocationStartIndex(allocationStartIndex);
+            System.out.println(allocationStartIndex);
+            this.setAllocationStartIndex(allocationStartIndex);
+            int instructionSetIndex = 0;
+            for(int i = allocationStartIndex ; i < instructionSet.size()+allocationStartIndex; i ++){
+                this.memoryRegisters.set(i, Optional.of(instructionSet.get(instructionSetIndex)));
+                System.out.println("Instruccion agregada a la memoria");
+                instructionSetIndex++;
+            }
+        }
         
-        int instructionSetIndex = 0;
-        for(int i = allocationStartIndex ; i < instructionSet.size()+allocationStartIndex; i ++){
-            this.memoryRegisters.set(i, Optional.of(instructionSet.get(instructionSetIndex)));
-            System.out.println("Instruccion agregada a la memoria");
-            instructionSetIndex++;
-         }
         System.out.println(this.memoryRegisters);
         System.out.println(this.memoryRegisters.size());
     }
