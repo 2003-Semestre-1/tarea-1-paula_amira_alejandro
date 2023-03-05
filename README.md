@@ -1,8 +1,10 @@
-# [NOMBRE DEL PROYECTO]
+# Tarea Programada 1: MiniPC
 ## Integrantes:
-### [Carné] [Nombre]
+### 2020034944 Alejandro Castro Araya
+###            Maria Paula Rubio Hernández
+###            Amira Suyen Acevedo Castillo
 
-### Estado del proyecto: Escala de 1 a 5, 1 siendo completo y 5 deplorable
-### Plataforma utilizada (Netbeans o IntelliJ)
+### Estado del proyecto: 1
+### Plataforma utilizada: Netbeans
 ### Enlace del video: 
 Recordar que el video debe ser **público** y con **sonido** para ser visto y escuchado por el profesor
