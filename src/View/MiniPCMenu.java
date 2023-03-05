@@ -394,7 +394,17 @@ public class MiniPCMenu extends javax.swing.JFrame {
                 this.getController().setCpu(cpu);
                 this.setCurrentAddress(this.controller.getCpu().getMemory().getAllocationStartIndex());
                 System.out.println(cpu);
-            
+                
+                MemoryRegister currentInstruction = this.getFileManager().getInstructions().get(this.getRowCount());
+                System.out.println(currentInstruction);
+                System.out.println(this.getController().getCpu().getDataRegisters().get(0).getValue());
+                System.out.println(this.getController().getCpu().getDataRegisters().get(0).getRegisterType());
+                System.out.println(currentInstruction.getOp());
+                System.out.println(currentInstruction.getRegister());
+                System.out.println(currentInstruction.getValue());
+                this.getController().executeInstruction(currentInstruction.getOp(),currentInstruction.getRegister(),currentInstruction.getValue());
+                System.out.println(this.getController().getCpu().getDataRegisters().get(0).getValue());
+                System.out.println(this.getController().getCpu().getDataRegisters().get(0).getRegisterType());
                 this.updateTable(this.fileManager.getInstructions(),this.getRowCount());
             }
             
@@ -425,8 +435,15 @@ public class MiniPCMenu extends javax.swing.JFrame {
         this.getTblCode().setValueAt(instructionSet.get(row).getAsmInstructionString(), row, 0);
         this.getTblCode().setValueAt(instructionSet.get(row).convertToBinary(), row, 1);
         this.getTblCode().setValueAt(this.getCurrentAddress(), row, 2);
+        
+        this.getLblNumberAX().setText(this.getController().getCpu().getDataRegisters().get(0).getValue()+"");
+        this.getLblNumberBX().setText(this.getController().getCpu().getDataRegisters().get(1).getValue()+"");
+        this.getLblNumberCX().setText(this.getController().getCpu().getDataRegisters().get(2).getValue()+"");
+        this.getLblNumberDX().setText(this.getController().getCpu().getDataRegisters().get(3).getValue()+"");
+        
         this.getLblNumberPC().setText(""+this.getCurrentAddress());
         this.getLblNumberIR().setText(this.getFileManager().getInstructions().get(this.getRowCount()).getAsmInstructionString());
+        
         this.setRowCount(this.getRowCount()+1);
         this.setCurrentAddress(this.getCurrentAddress()+1);
     } 
@@ -543,8 +560,12 @@ public class MiniPCMenu extends javax.swing.JFrame {
             JOptionPane.showMessageDialog (null, "No quedan más instrucciones que cargar.", "Error: Final del archivo", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        else
+        else{
+            MemoryRegister currentInstruction = this.getFileManager().getInstructions().get(this.getRowCount());
+            System.out.println(currentInstruction);
+            this.getController().executeInstruction(currentInstruction.getOp(),currentInstruction.getRegister(),currentInstruction.getValue());
             this.updateTable(this.fileManager.getInstructions(), this.getRowCount());
+        }
     }//GEN-LAST:event_nextInstructionBtnActionPerformed
 
     private void nextInstructionBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextInstructionBtn1ActionPerformed

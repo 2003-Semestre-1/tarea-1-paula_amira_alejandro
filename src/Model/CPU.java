@@ -14,6 +14,9 @@ import java.util.ArrayList;
 public class CPU {
     
     Memory memory;
+    int programCounter = 0;
+    String instructionRegister = "";
+    int accumulator = 0;
     ArrayList<DataRegister> dataRegisters = new ArrayList<DataRegister>();
 
     public CPU(Memory memory) {
@@ -28,6 +31,32 @@ public class CPU {
         this.dataRegisters.add(dx);
         
     }
+
+    public int getProgramCounter() {
+        return programCounter;
+    }
+
+    public void setProgramCounter(int programCounter) {
+        this.programCounter = programCounter;
+    }
+
+    public String getInstructionRegister() {
+        return instructionRegister;
+    }
+
+    public void setInstructionRegister(String instructionRegister) {
+        this.instructionRegister = instructionRegister;
+    }
+
+    public int getAccumulator() {
+        return accumulator;
+    }
+
+    public void setAccumulator(int accumulator) {
+        this.accumulator = accumulator;
+    }
+    
+    
     
     public Memory getMemory() {
         return memory;
