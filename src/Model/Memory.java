@@ -14,6 +14,9 @@ import javax.swing.JOptionPane;
  * @author aleja
  */
 public class Memory {
+    // Esta clase representa la memoria de un CPU
+    // Sus atributos son un arreglo de instrucciones, el tamano (en este caso es 100), el tamano asignado a la memoria, y el indice donde empezará la alocacion
+    // El índice siempre será 10 o más ya que los primeros 10 índices son tomados por archivos del sistema
     
     ArrayList<Optional<MemoryRegister>> memoryRegisters = new ArrayList();
     int size = 100;
@@ -21,22 +24,25 @@ public class Memory {
     int allocationStartIndex;
 
     public Memory(int allocatedSize) {
+        // Este constructor rercibe el tamano del set de instrucciones
+        // Además agrega 100 registros de memoria vacíos porque el tamano de la memoria es 100
         this.allocatedSize = allocatedSize;
         for(int i = 0 ; i < size ; i ++){
             memoryRegisters.add(Optional.empty());                 
         }
     }
-    
-    public boolean isFull(){
-        
-        return false;
-    }
 
     public void allocateMemory(ArrayList<MemoryRegister> instructionSet){
-        int minIndex = 10; // Minimum value of range
+        // Este método asigna las instrucciones recibidas a la memoria
+        // Recibe un set de instrucciones de tipo ArrayList<MemoryRegister>
+        
+        // Se genera un índice random donde se empezará a asignar la memoria, no puede ser menor a 10 ni menor a 99
+        // Porque los primeros 10 indices son de archivos del sistema y el tamano de la memoria es 100
+        int minIndex = 10;
         int maxIndex = size-1;
         int allocationStartIndex = (int)Math.floor(Math.random() * ((maxIndex) - minIndex + 1) + minIndex);
         
+        // Si se reciben 90 instrucciones entonces el índice siempre será 10 para que quepan en la memoria
         if (instructionSet.size() == 90){
             allocationStartIndex = 10;
             this.setAllocationStartIndex(allocationStartIndex);
@@ -49,9 +55,11 @@ public class Memory {
             return;
         }
         else{
+            // Si con el índice generado las instrucciones no van a caber, se genera otro hasta que sí quepan todas en la memoria
             while (allocationStartIndex + instructionSet.size() > maxIndex){
             allocationStartIndex = (int)Math.floor(Math.random() * ((maxIndex) - minIndex + 1) + minIndex);
         }
+            // Se asigna la instrucción en el índice de la memoria que fue generado al azar
             System.out.println(allocationStartIndex);
             this.setAllocationStartIndex(allocationStartIndex);
             int instructionSetIndex = 0;

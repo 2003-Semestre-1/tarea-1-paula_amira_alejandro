@@ -12,13 +12,19 @@ import java.util.ArrayList;
  * @author aleja
  */
 public class CPU {
+    // Esta clase representa el CPU, el cual cuenta con la memoria, los registros de datos (AB, BX, CX y DX), el acumulador, el program counter y el registro de instrucción
+    
+    // El program counter almacena la dirección en la memoria de la instrucción actual, el acumulador almacena valores para realizar operaciones aritméticas
+    // y el registro de instrucción almacena la instrucción actual
     
     Memory memory;
     int programCounter = 0;
     String instructionRegister = "";
     int accumulator = 0;
     ArrayList<DataRegister> dataRegisters = new ArrayList<DataRegister>();
-
+    
+    // En el constructor se toma solamente la memoria como parámetro
+    // Se crea un ArrayList de registros y se agregan AB,BX,CX y DX a esta arraylist
     public CPU(Memory memory) {
         this.memory = memory;
         DataRegister ax = new DataRegister(0,"Data");

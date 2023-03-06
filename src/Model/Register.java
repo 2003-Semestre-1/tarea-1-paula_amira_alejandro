@@ -10,6 +10,10 @@ package Model;
  * @author aleja
  */
 public abstract class Register {
+    // Esta clase abstracta es la clase que representa un registro
+    // Será heredada por MemoryRegister y DataRegister
+    // Contiene el valor del registro, el tipo de registro, y la string de la instrucción en ensamblador que contiene
+    // Además contiene un método abstracto para convertir a binario lo almacenado en el registro
     
     public Integer value;
     public String registerType;
@@ -20,6 +24,7 @@ public abstract class Register {
         this.registerType = registerType;
     }
     
+    // Este método abstracto deberá ser implementado por todas las clases que hereden de Register y convierten lo almacenado en el registro a binario
     public abstract String convertToBinary();
 
     public Integer getValue() {

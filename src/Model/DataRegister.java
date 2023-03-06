@@ -10,13 +10,16 @@ package Model;
  * @author aleja
  */
 public class DataRegister extends Register{
+    // Esta clase representa un registro de datos, por ejemplo AB, BX, CX o DX
+    // Hereda sus atributos y métodos de la clase abstracta Register
     
     public DataRegister(Integer value, String registerType) {
         super(value, registerType);
     }
-
+    
     @Override
     public String convertToBinary() {
+        // Este método convierte la información almacenada en el registro a un string que es la inforación convertida a binario
         String binaryString = "";
         String sign = "";
         
@@ -28,7 +31,7 @@ public class DataRegister extends Register{
         }
         
         int charactersRemaining = 8-value.length();
-        StringBuilder value8bit = new StringBuilder();// builder is empty now
+        StringBuilder value8bit = new StringBuilder();
         for (int count = 0; count < charactersRemaining; count++) {
             if (this.value < 0 && count == 0){
                 value8bit.append('1');

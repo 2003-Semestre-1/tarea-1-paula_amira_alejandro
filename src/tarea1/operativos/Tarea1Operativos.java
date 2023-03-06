@@ -5,7 +5,7 @@
  */
 package tarea1.operativos;
 
-import View.MiniPCMenu;
+import View.MiniPC;
 
 /**
  *
@@ -17,7 +17,7 @@ public class Tarea1Operativos {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        MiniPCMenu miniPC = new MiniPCMenu();
+        MiniPC miniPC = new MiniPC();
         miniPC.setVisible(true);
     }
     

@@ -24,19 +24,26 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author aleja
  */
 public class FileManager {
+    // Esta clase representa el objeto que se utiliza para administrar y realizar todas las operaciones de manejo de archivos
+    // El FileManager lee el archivo con las instrucciones y las carga a memoria
+    // Valida las instrucciones para verificar que no haya errores en ellas
+    // Sus atributos son: un BufferedReader, el arreglo de instrucciones que se darán al CPU, y dos hashmaps uno con los valores de cada operador y uno para los valores de cada registro
     
     BufferedReader fileReader;
     ArrayList<MemoryRegister> instructions = new ArrayList<MemoryRegister>();
     HashMap<String,Integer> operations;
     HashMap<String,Integer> dataRegisters;
     int lineAmount = 0;
-    int errorAmount = 0;
     
     public FileManager() {
-        
+        // No requiere parámetros para ser construido
     }
     
     public String selectFile(Component viewComponent){
+        // Este método abre una ventana FileChooser donde se escoge el archivo ASM que se desea cargar
+        // Solo recibe archivos con extensión .asm
+        // Recibe como parámetro el componente de la GUI que se utilizó para abrir la ventana de FileChooser
+        
         String filePath = "";
         
         JFileChooser fileChooser = new JFileChooser();
@@ -57,6 +64,9 @@ public class FileManager {
     }
     
     public ArrayList<MemoryRegister> loadFileInstructions(String filePath){
+        // Este método carga las instrucciones leídas en memoria
+        // Procesa cada instrucción línea por línea y la valida, si está valida entonces la agrega a un instruction set que será cargado al CPU
+        // Recibe como parámetro el path del archivo que se desea cargar
         try {
             
             fileReader = new BufferedReader(new FileReader(filePath));
@@ -65,13 +75,7 @@ public class FileManager {
             
             while(instruction != null) {
                 
-                if(!this.validateInstruction(instruction,instructionPos)){                                          
-                    
-                    addError();
-                    return null;
-                } 
-                
-                this.instructions.add(this.processInstruction(instruction));
+                this.instructions.add(this.processInstruction(instruction)); // Se procesa la instrucción para agergarla a memoria, luego se procede a la siguiente línea
                 System.out.println("Instruccion es: " + instruction);
                 
                 instructionPos++;
@@ -87,6 +91,7 @@ public class FileManager {
             
             
             if(instructionPos == 0){
+                // Se valida que el archivo no esté vacío
                 JOptionPane.showMessageDialog (null, "El archivo no puede estar vacío.", "Error: archivo vacío", JOptionPane.ERROR_MESSAGE);       
                 return null;
             }
@@ -94,7 +99,7 @@ public class FileManager {
             return instructions;
             
         } catch (IOException e) {
-            
+            // Si hubo errores en la lectura del archivo, tira un error
             JOptionPane.showMessageDialog (null, "Error en la lectura del archivo.", "Error de lectura", JOptionPane.ERROR_MESSAGE);
             Logger.getLogger(FileManager.class.getName()).log(Level.SEVERE, null, e);
             
@@ -103,8 +108,13 @@ public class FileManager {
     }
     
     public MemoryRegister processInstruction(String instruction){
+        // Este método procesa una instrucción y la carga en memoria si es valida
+        // Recibe como parámetro una string con la instrucción que se desea procesar
+        
         MemoryRegister memoryRegisterInstruction = null;
         try{
+            // Se realiza parsing del texto de la instrucción por medio de splits
+            // Se divide la string de la instrucción en varias partes para sacar el operador y el registro por separado
             String[] split1 = instruction.split(",");
             String[] split2 = split1[0].split(" ");
         
@@ -113,12 +123,15 @@ public class FileManager {
             int value = 0;  
         
         if(split1.length == 2){
+            // Si la instrución contiene un valor entero (como en instrucciones con MOV por ejemplo), se separa también el valor
             value = Integer.parseInt(split1[1].trim().toLowerCase());
         }
         
+        // Se utilizan los hashMaps que fueron creados para obtener el valor entero del operador y del registro dependiendo de cuál se escribió en la instrucción
         int opValue = this.operations.get(operator);
         int registerValue = this.dataRegisters.get(register);
         
+        // Se crea la instrucción que será cargada en memoria, se guarda el string de ensamblador para poder desplegarla en la GUI
         memoryRegisterInstruction = new MemoryRegister(opValue, registerValue, value, "Data");
         System.out.println("Operador: "+memoryRegisterInstruction.getOp());
         System.out.println("Registro: "+memoryRegisterInstruction.getRegister());
@@ -127,6 +140,7 @@ public class FileManager {
         memoryRegisterInstruction.setAsmInstructionString(instruction);
         }
         
+        // Se valida si hay instrucciones inválidas, o registros inválidos, o si se dio un valor que no era entero cuando se esperaba uno
         catch(ArrayIndexOutOfBoundsException e){
             JOptionPane.showMessageDialog (null, "La siguiente instrucción no es válida: "+instruction, "Error: Instrucciones inválidas", JOptionPane.ERROR_MESSAGE);
             Logger.getLogger(FileManager.class.getName()).log(Level.SEVERE, null, e);
@@ -145,13 +159,10 @@ public class FileManager {
         
         return memoryRegisterInstruction;
     }
-    
-    public boolean validateInstruction(String instruction,int instructionPos) {
-        
-        return true;
-    }
-    
+
     public void loadDataRegisters() {
+        // Este método crea un hashmap donde se cargan los valores enteros de cada registro, para que se puedan sacar dependiendo del registro escrito en la instrucción
+        // No recibe parámetros
         this.dataRegisters = new HashMap<>();
         this.dataRegisters.put("ax", 1);
         this.dataRegisters.put("bx", 2);
@@ -160,6 +171,8 @@ public class FileManager {
     }
     
     public void loadOperations() {
+        // Este método crea un hashmap donde se cargan los valores enteros de cada operador, para que se puedan sacar dependiendo del operador escrito en la instrucción
+        // No recibe parámetros
         this.operations = new HashMap<>();
         this.operations.put("load", 1);
         this.operations.put("store", 2);
@@ -168,10 +181,6 @@ public class FileManager {
         this.operations.put("add", 5);
     }
     
-    public void addError() {
-        this.setErrorAmount(errorAmount+1);
-    }
-
     public BufferedReader getFileReader() {
         return fileReader;
     }
@@ -194,14 +203,6 @@ public class FileManager {
 
     public void setDataRegisters(HashMap<String, Integer> dataRegisters) {
         this.dataRegisters = dataRegisters;
-    }
-
-    public int getErrorAmount() {
-        return errorAmount;
-    }
-
-    public void setErrorAmount(int errorAmount) {
-        this.errorAmount = errorAmount;
     }
     
     public ArrayList<MemoryRegister> getInstructions() {
