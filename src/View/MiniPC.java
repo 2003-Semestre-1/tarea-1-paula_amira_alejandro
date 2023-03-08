@@ -477,9 +477,13 @@ public class MiniPC extends javax.swing.JFrame {
         this.getLblNumberDX().setText(this.getController().getCpu().getDataRegisters().get(3).getValue()+"");
         
         this.getLblNumberAC().setText(this.getController().getCpu().getAccumulator()+"");
-        this.getLblNumberPC().setText(""+this.getCurrentAddress());
-        this.getLblNumberIR().setText(this.getFileManager().getInstructions().get(this.getRowCount()).getAsmInstructionString());
-        
+        if (this.getFileManager().getInstructions().size() > this.getRowCount()+1){
+            this.getLblNumberPC().setText(""+(this.getCurrentAddress()+1));
+            this.getLblNumberIR().setText(this.getFileManager().getInstructions().get(this.getRowCount()+1).getAsmInstructionString());
+        }
+        else{
+            this.getController().getCpu().setProgramCounter(Integer.parseInt(this.getLblNumberPC().getText()));
+        }
         
         this.setRowCount(this.getRowCount()+1);
         this.setCurrentAddress(this.getCurrentAddress()+1);
@@ -616,7 +620,7 @@ public class MiniPC extends javax.swing.JFrame {
 
                 MemoryRegister currentInstruction = this.getFileManager().getInstructions().get(this.getRowCount());
                 this.getController().getCpu().setInstructionRegister(currentInstruction.getAsmInstructionString());
-                this.getController().getCpu().setProgramCounter(this.getRowCount());
+                this.getController().getCpu().setProgramCounter(this.currentAddress);
 
                 this.getController().executeInstruction(currentInstruction.getOp(),currentInstruction.getRegister(),currentInstruction.getValue());
                 this.updateTable(this.fileManager.getInstructions(),this.getRowCount());
